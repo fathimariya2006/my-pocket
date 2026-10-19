@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#7773d4">
+<title>My Pocket — Student Money Diary</title>
+<style>
+:root{--purple:#7773d4;--purple-dark:#4c4a9f;--ink:#24385b;--muted:#697794;--line:#e2eafb;--bg:#f7f9ff;--mint:#e1f7ef;--blue:#e7f3ff;--peach:#fff0dc;--pink:#ffe8f0;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}
+header{background:linear-gradient(115deg,#7471d0,#8988d8);color:#fff;padding:17px clamp(16px,4vw,42px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;box-shadow:0 5px 18px #5856a51f}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:47px;height:47px;border-radius:15px;background:#ffffff30;display:grid;place-items:center;font-size:27px}.brand h1{margin:0;font-size:25px;letter-spacing:.2px}.brand p{margin:3px 0 0;font-size:13px;opacity:.9}
+nav{display:flex;gap:7px;flex-wrap:wrap}nav button{padding:10px 15px;border-radius:22px;background:transparent;color:white;font-weight:650}nav button.active,nav button:hover{background:#ffffffdf;color:var(--purple-dark)}
+main{max-width:1280px;margin:24px auto;padding:0 18px 30px}.welcome{background:linear-gradient(105deg,#eeeaff,#f8f4ff);border-radius:18px;padding:23px 26px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:15px;overflow:hidden}.welcome h2{font-size:clamp(25px,4vw,36px);margin:0 0 8px;color:#233a62}.welcome p{margin:5px 0;line-height:1.6;max-width:620px}.date-label{font-weight:700;font-size:13px;color:#52669b;margin-top:12px}.plant{font-size:64px;padding:5px 22px}
+.top-grid{display:grid;grid-template-columns:1.05fr 1.05fr .95fr;gap:16px;margin-bottom:20px}.card{background:white;border:1px solid #e5edfb;border-radius:16px;padding:18px;box-shadow:0 3px 12px #334d7b08;min-width:0}.balance{background:linear-gradient(130deg,#e2f8f0,#e9faf5);border:0}.quick{background:linear-gradient(130deg,#e8f4ff,#edf7ff);border:0}.reminder{background:linear-gradient(130deg,#fff1dd,#fff7eb);border:0}.eyebrow{font-size:14px;font-weight:750;color:#397f6a}.big-money{font-size:32px;font-weight:850;margin:5px 0 16px;color:#174b52}.split{display:flex;gap:18px;border-top:1px solid #cde9e2;padding-top:13px}.split div{flex:1}.split span{display:block;font-size:12px;color:#50677b;margin-bottom:4px}.split strong{font-size:19px}.card h3{margin:0 0 13px;font-size:17px}.quick-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px}.quick-buttons button{background:#ffffffd9;border:1px solid #dceafb;border-radius:12px;padding:12px 6px;color:#2c4d84;font-weight:750}.quick-buttons span{display:block;font-size:23px;margin-bottom:4px}.reminder p{line-height:1.6;margin:7px 0}.section-grid{display:grid;grid-template-columns:1.08fr .98fr;gap:16px;margin-bottom:16px}.section-title{display:flex;align-items:center;gap:9px;margin:0 0 14px;font-size:18px}.section-title span{font-size:22px}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:12px}th{background:#f0f6ff;text-align:left;color:#284776;padding:11px 10px}td{padding:11px 10px;border-bottom:1px solid #edf1f8}tr:last-child td{border-bottom:0}.tag{display:inline-block;border-radius:20px;padding:4px 9px;font-size:11px;font-weight:750}.expense{background:#ffe1e1;color:#c23c3c}.income{background:#d8f5e6;color:#18855d}.lent{background:#e7e1ff;color:#6551b5}.borrowed{background:#ffe8f2;color:#b83f78}.status{background:#e0f6d4;color:#347a28}.pending{background:#ffebc8;color:#995c0b}.tabs{display:flex;gap:6px;background:#f1f6ff;padding:4px;border-radius:12px;margin-bottom:12px;width:max-content;max-width:100%}.tabs button{background:transparent;color:#4d6590;padding:8px 12px;border-radius:9px;font-size:12px;font-weight:700}.tabs button.active{background:var(--purple);color:#fff}.form-card{margin-bottom:16px}.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;font-weight:750;color:#415777}.field input,.field select,.field textarea{width:100%;min-width:0;border:1px solid #cad9ef;border-radius:9px;padding:11px;background:#fff;color:var(--ink);outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px #7773d41c}.field.full{grid-column:1/-1}.form-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:13px;flex-wrap:wrap}.primary{background:var(--purple);color:white;border-radius:10px;padding:11px 19px;font-weight:750}.secondary{background:#edf1fc;color:#4e5891;border-radius:10px;padding:11px 16px;font-weight:750}.delete{background:#fff0f0;color:#b53c3c;border-radius:7px;padding:6px 8px;font-size:11px}.summary-list{display:grid;gap:11px}.summary-row{display:flex;justify-content:space-between;gap:12px;font-size:13px}.summary-row span:first-child{color:#4c6083}.summary-row strong{white-space:nowrap}.tip{margin-top:16px;background:#f0eaff;color:#5a4ca8;padding:12px;border-radius:10px;font-size:12px;font-weight:650}.empty{text-align:center;color:#7a87a0;padding:22px}.hidden{display:none!important}.notice{margin:0 0 14px;padding:11px 14px;border-radius:10px;background:#e1f7ef;color:#236e52;font-size:13px;display:none}
+footer{text-align:center;color:#7d86aa;padding:17px;font-size:12px;background:#eeedff}
+@media(max-width:900px){.top-grid{grid-template-columns:1fr 1fr}.reminder{grid-column:1/-1}.section-grid{grid-template-columns:1fr}}@media(max-width:560px){header{padding:14px}.brand h1{font-size:22px}nav{width:100%;overflow:auto;flex-wrap:nowrap}nav button{white-space:nowrap;padding:9px 12px}main{padding:0 11px 22px;margin-top:14px}.welcome{padding:18px}.plant{font-size:42px;padding:0}.top-grid{grid-template-columns:1fr}.reminder{grid-column:auto}.card{padding:15px}.form-grid{grid-template-columns:1fr 1fr}.field.full{grid-column:1/-1}.big-money{font-size:29px}.split strong{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">👛</div><div><h1>My Pocket</h1><p>Track • Manage • Be Responsible</p></div></div>
+  <nav aria-label="Main navigation">
+    <button class="active" data-view="home">Home</button><button data-view="transactions">Transactions</button><button data-view="loans">Friends & Loans</button><button data-view="summary">Summary</button>
+  </nav>
+</header>
+<main>
+  <section class="welcome">
+    <div><h2>Hello, <span id="helloName">Student</span>! 💗</h2><p>Keep track of your pocket money, everyday spending, and money shared with friends.</p><p class="date-label">📅 Today: <span id="todayDate"></span></p></div>
+    <div class="plant" aria-hidden="true">🪴📚</div>
+  </section>
+  <div id="notice" class="notice" role="status"></div>
+  <section class="top-grid">
+    <div class="card balance"><div class="eyebrow">👛 Total Available Balance</div><div class="big-money" id="balance">₹0</div><div class="split"><div><span>Received from parents</span><strong id="parentsTotal">₹0</strong></div><div><span>Friends owe you</span><strong id="owedTotal">₹0</strong></div></div></div>
+    <div class="card quick"><h3>⚡ Quick Actions</h3><div class="quick-buttons"><button data-action="expense"><span>🛍️</span>Add Expense</button><button data-action="income"><span>💵</span>Add Income</button><button data-action="lent"><span>🤝</span>Lent to Friend</button><button data-action="borrowed"><span>🙌</span>Borrowed Money</button></div></div>
+    <div class="card reminder"><h3>🔔 Your Reminder</h3><div id="reminderText"><p>No records yet. Add a loan to track when it should be returned.</p></div></div>
+  </section>
+  <section class="section-grid">
+    <div class="card" id="transactionsPanel"><h3 class="section-title"><span>📋</span> Recent Transactions</h3><div class="table-wrap"><table><thead><tr><th>Date</th><th>Type</th><th>Purpose</th><th>Amount</th><th>Note</th><th></th></tr></thead><tbody id="transactionRows"></tbody></table></div><div id="transactionEmpty" class="empty hidden">Your transactions will appear here.</div></div>
+    <div class="card" id="loansPanel"><h3 class="section-title"><span>🫶</span> Friends & Loans</h3><div class="tabs"><button class="active" data-loan-tab="lent">Given to friends</button><button data-loan-tab="borrowed">Borrowed from friends</button></div><div class="table-wrap"><table><thead><tr><th>Friend</th><th>Amount</th><th>Given/Taken</th><th>Due date</th><th>Purpose</th><th>Status</th><th></th></tr></thead><tbody id="loanRows"></tbody></table></div><div id="loanEmpty" class="empty hidden">No loan records yet. Add a friend loan below.</div></div>
+  </section>
+  <section class="section-grid">
+    <div class="card form-card" id="entryPanel">
+      <h3 class="section-title"><span>➕</span> Add a Money Record</h3>
+      <form id="entryForm">
+        <div class="form-grid">
+          <div class="field"><label for="type">Record type</label><select id="type" required><option value="expense">Expense</option><option value="income">Money received</option><option value="lent">Lent to a friend</option><option value="borrowed">Borrowed from a friend</option><option value="repay">Repaid a friend</option><option value="received">Friend returned money</option></select></div>
+          <div class="field"><label for="amount">Amount (₹)</label><input id="amount" type="number" min="1" step="0.01" placeholder="e.g. 100" required></div>
+          <div class="field"><label for="date">Date</label><input id="date" type="date" required></div>
+          <div class="field friend-field"><label for="person">Friend's name (for loans)</label><input id="person" type="text" maxlength="60" placeholder="e.g. Amina"></div>
+          <div class="field"><label for="purpose">Purpose</label><input id="purpose" type="text" maxlength="100" placeholder="Food, bus fare, notes..." required></div>
+          <div class="field due-field"><label for="dueDate">Expected return date</label><input id="dueDate" type="date"></div>
+          <div class="field full"><label for="note">Extra note (optional)</label><textarea id="note" rows="2" maxlength="250" placeholder="e.g. Lunch in college, return after 3 days"></textarea></div>
+        </div>
+        <div class="form-actions"><button type="reset" class="secondary">Clear</button><button type="submit" class="primary">Save Record</button></div>
+      </form>
+      <p style="font-size:11px;color:#75829b;line-height:1.5">Tip: choose “Money received” for pocket money from parents. Choose “Lent” or “Borrowed” to record money shared with a friend.</p>
+    </div>
+    <div class="card" id="summaryPanel"><h3 class="section-title"><span>📊</span> Money Summary</h3><div class="summary-list">
+      <div class="summary-row"><span>💚 Money received</span><strong id="sumIncome">₹0</strong></div>
+      <div class="summary-row"><span>🧾 Everyday expenses</span><strong id="sumExpenses">₹0</strong></div>
+      <div class="summary-row"><span>🤝 Lent to friends (outstanding)</span><strong id="sumLent">₹0</strong></div>
+      <div class="summary-row"><span>🙌 Borrowed (not yet repaid)</span><strong id="sumBorrowed">₹0</strong></div>
+      <div class="summary-row"><span>📆 Upcoming returns</span><strong id="sumUpcoming">0</strong></div>
+    </div><div class="tip">💜 Small steps today can make managing money easier tomorrow.</div><p style="font-size:11px;color:#77839c;line-height:1.5">Your records are saved in this browser on this device. This demo does not connect to a bank or send reminders outside the website.</p></div>
+  </section>
+</main>
+<footer>My Pocket • Made for student life with care 💗</footer>
+<script>
+const $ = id => document.getElementById(id);
+const today = new Date();
+const isoToday = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,'0')}-${String(today.getDate()).padStart(2,'0')}`;
+const money = n => '₹' + Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});
+const dateText = d => d ? new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : '—';
+const typeNames={expense:'Expense',income:'Income',lent:'Lent',borrowed:'Borrowed',repay:'Repaid',received:'Returned'};
+let records=[];
+try{records=JSON.parse(localStorage.getItem('myPocketRecords')||'[]')}catch(e){records=[]}
+let loanTab='lent';
+$('todayDate').textContent=today.toLocaleDateString('en-IN',{day:'2-digit',month:'long',year:'numeric'});
+$('date').value=isoToday;
+function save(){localStorage.setItem('myPocketRecords',JSON.stringify(records));render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function loanOutstanding(type){return records.filter(r=>r.type===type).reduce((s,r)=>s+r.amount,0)-records.filter(r=>type==='lent'?r.type==='received':r.type==='repay').reduce((s,r)=>s+r.amount,0)}
+function getBalances(){
+ const income=records.filter(r=>r.type==='income'||r.type==='borrowed').reduce((s,r)=>s+r.amount,0);
+ const expenses=records.filter(r=>r.type==='expense'||r.type==='lent'||r.type==='repay').reduce((s,r)=>s+r.amount,0);
+ const returns=records.filter(r=>r.type==='received').reduce((s,r)=>s+r.amount,0);
+ const repayments=records.filter(r=>r.type==='repay').reduce((s,r)=>s+r.amount,0);
+ // Lent money reduces cash; repayments/returns increase cash. Borrowed money increases cash.
+ return {cash:records.reduce((s,r)=>s+(['income','borrowed','received'].includes(r.type)?r.amount:-(['expense','lent','repay'].includes(r.type)?r.amount:0)),0),income:records.filter(r=>r.type==='income').reduce((s,r)=>s+r.amount,0),expenses:records.filter(r=>r.type==='expense').reduce((s,r)=>s+r.amount,0),lent:Math.max(0,loanOutstanding('lent')),borrowed:Math.max(0,loanOutstanding('borrowed')),parents:records.filter(r=>r.type==='income'&&/parent|pocket money/i.test(r.purpose+' '+r.note)).reduce((s,r)=>s+r.amount,0)}
+}
+function render(){
+ const b=getBalances();$('balance').textContent=money(b.cash);$('parentsTotal').textContent=money(b.parents);$('owedTotal').textContent=money(b.lent);
+ $('sumIncome').textContent=money(b.income);$('sumExpenses').textContent=money(b.expenses);$('sumLent').textContent=money(b.lent);$('sumBorrowed').textContent=money(b.borrowed);
+ const pending=records.filter(r=>['lent','borrowed'].includes(r.type)&&r.dueDate&&r.dueDate>=isoToday).length;$('sumUpcoming').textContent=pending;
+ const due=records.filter(r=>['lent','borrowed'].includes(r.type)&&r.dueDate&&r.dueDate<=isoToday).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
+ const soon=records.filter(r=>['lent','borrowed'].includes(r.type)&&r.dueDate&&r.dueDate>isoToday).sort((a,b)=>a.dueDate.localeCompare(b.dueDate));
+ if(due.length){$('reminderText').innerHTML=`<p><strong>${due.length} return date${due.length>1?'s':''} reached or passed.</strong></p><p>${due.slice(0,2).map(r=>esc(r.person||'Friend')+' • '+money(r.amount)+' • '+dateText(r.dueDate)).join('<br>')}</p>`}
+ else if(soon.length){$('reminderText').innerHTML=`<p>📅 Next expected return:</p><p><strong>${esc(soon[0].person||'Friend')}</strong> • ${money(soon[0].amount)}</p><p>Due ${dateText(soon[0].dueDate)}</p>`}
+ else $('reminderText').innerHTML='<p>No upcoming return dates saved.</p><p>Keep recording your pocket money. You’re doing great! 😊</p>';
+ const sorted=[...records].sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id).slice(0,8);
+ $('transactionRows').innerHTML=sorted.map(r=>`<tr><td>${dateText(r.date)}</td><td><span class="tag ${['income','received'].includes(r.type)?'income':['lent','borrowed'].includes(r.type)?r.type:'expense'}">${typeNames[r.type]}</span></td><td>${esc(r.purpose)}</td><td style="font-weight:750;color:${['income','borrowed','received'].includes(r.type)?'#168357':'#bd4848'}">${['income','borrowed','received'].includes(r.type)?'+ ':'− '}${money(r.amount)}</td><td>${esc(r.note||r.person||'—')}</td><td><button class="delete" data-delete="${r.id}">Delete</button></td></tr>`).join('');
+ $('transactionEmpty').classList.toggle('hidden',sorted.length>0);
+ const loans=records.filter(r=>r.type===loanTab).sort((a,b)=>b.date.localeCompare(a.date));
+ $('loanRows').innerHTML=loans.map(r=>{const returnType=loanTab==='lent'?'received':'repay';const repaid=records.filter(x=>x.type===returnType&&x.relatedId===r.id).reduce((s,x)=>s+x.amount,0);const left=Math.max(0,r.amount-repaid);return `<tr><td>${esc(r.person||'Friend')}</td><td>${money(r.amount)}</td><td>${dateText(r.date)}</td><td>${dateText(r.dueDate)}</td><td>${esc(r.purpose)}</td><td><span class="tag ${left===0?'status':'pending'}">${left===0?'Returned':money(left)+' due'}</span></td><td>${left>0?`<button class="secondary" style="padding:6px 8px;font-size:11px" data-return="${r.id}" data-left="${left}" data-kind="${loanTab}">Record return</button>`:''}</td></tr>`}).join('');
+ $('loanEmpty').classList.toggle('hidden',loans.length>0);
+}
+function setType(t){$('type').value=t;$('entryPanel').scrollIntoView({behavior:'smooth',block:'start'});$('purpose').focus()}
+document.querySelectorAll('[data-action]').forEach(btn=>btn.addEventListener('click',()=>setType(btn.dataset.action)));
+document.querySelectorAll('nav [data-view]').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('nav [data-view]').forEach(x=>x.classList.toggle('active',x===btn));const map={home:'top-grid',transactions:'transactionsPanel',loans:'loansPanel',summary:'summaryPanel'};$(map[btn.dataset.view]).scrollIntoView({behavior:'smooth',block:'start'})}));
+document.querySelectorAll('[data-loan-tab]').forEach(btn=>btn.addEventListener('click',()=>{loanTab=btn.dataset.loanTab;document.querySelectorAll('[data-loan-tab]').forEach(x=>x.classList.toggle('active',x===btn));render()}));
+$('type').addEventListener('change',()=>{const t=$('type').value;document.querySelector('.friend-field label').textContent=['lent','borrowed','repay','received'].includes(t)?'Friend’s name':'Friend’s name (optional)';$('dueDate').required=['lent','borrowed'].includes(t)});
+$('entryForm').addEventListener('submit',e=>{e.preventDefault();const type=$('type').value,amount=Number($('amount').value);if(!Number.isFinite(amount)||amount<=0)return;const r={id:Date.now(),type,amount,date:$('date').value||isoToday,person:$('person').value.trim(),purpose:$('purpose').value.trim(),dueDate:$('dueDate').value,note:$('note').value.trim()};if(['lent','borrowed'].includes(type)&&!r.person){alert('Please enter your friend’s name for this loan.');$('person').focus();return}if(['repay','received'].includes(type)){const originalType=type==='received'?'lent':'borrowed';const match=[...records].reverse().find(x=>x.type===originalType&&x.person.toLowerCase()===r.person.toLowerCase());if(match)r.relatedId=match.id}
+ records.push(r);save();$('entryForm').reset();$('date').value=isoToday;$('dueDate').required=false;$('notice').textContent='Saved! Your money record has been added.';$('notice').style.display='block';setTimeout(()=>$('notice').style.display='none',3000)});
+document.addEventListener('click',e=>{const del=e.target.closest('[data-delete]');if(del){if(confirm('Delete this money record?')){records=records.filter(r=>r.id!==Number(del.dataset.delete));save()}return}
+ const ret=e.target.closest('[data-return]');if(ret){const id=Number(ret.dataset.return),orig=records.find(r=>r.id===id),kind=ret.dataset.kind,left=Number(ret.dataset.left);if(!orig)return;const raw=prompt(`How much did ${kind==='lent'?'your friend return to you':'you repay your friend'}? Remaining: ${money(left)}`,String(left));if(raw===null)return;const amount=Number(raw);if(!Number.isFinite(amount)||amount<=0||amount>left){alert('Enter an amount greater than 0 and no more than the remaining amount.');return}records.push({id:Date.now(),type:kind==='lent'?'received':'repay',amount,date:isoToday,person:orig.person,purpose:'Loan return',dueDate:'',note:'Return for '+orig.purpose,relatedId:id});save()}});
+render();
+</script>
+</body>
+</html>
